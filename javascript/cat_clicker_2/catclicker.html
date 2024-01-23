@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="style.css" rel="stylesheet">
+  <title>Cat Clicker</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="div-cat-one">
+      <img id="imagecatone" src="kittycat.jpg" alt="kittycat">
+      <p id="textoinfo">O número de vezes que o imagem do gatinho foi clicado foi
+        <input id="input_cat_one" type="text" value=0 disabled>
+        vezes
+      </p>
+    </div>
+    <div id="div-cat-two">
+      <img id="imagecattwo" src="kittycat2.jpg" alt="kittycat">
+      <p id="textoinfo">O número de vezes que o imagem do gatinho foi clicado foi
+        <input id="input_cat_two" type="text" value=0 disabled>
+        vezes
+      </p>
+    </div>
+  </div>
+</body>
+
+<script>
+  let contador_cat_one = 0
+  let contador_cat_two = 0
+  const elementcatone = document.getElementById("imagecatone");
+  const elementcattwo = document.getElementById("imagecattwo");
+  elementcatone.addEventListener("click", function () {
+    document.getElementById("input_cat_one").value = ++contador_cat_one;
+  });
+  elementcattwo.addEventListener("click", function () {
+    document.getElementById("input_cat_two").value = ++contador_cat_two;
+  });
+</script>
+
+</html>
