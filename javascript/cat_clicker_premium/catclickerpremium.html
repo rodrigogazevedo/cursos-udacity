@@ -10,63 +10,7 @@
 
 <body>
 
-  <script>
-    document.body.innerHTML = '';
-
-    var nameToImage = {
-      "Tigrinho": "kittycat1.jpg",
-      "Tom": "kittycat2.jpg",
-      "Neve": "kittycat3.jpg",
-      "Garfield": "kittycat4.jpg",
-      "Pretinho": "kittycat5.jpg"
-    };
-
-    var currentDiv = null;
-
-    for (var name in nameToImage) {
-
-      var elem = document.createElement('div');
-      elem.textContent = name;
-
-      elem.style.cursor = 'pointer';
-
-      elem.addEventListener('click', (function (name) {
-        return function () {
-          if (currentDiv) {
-            currentDiv.parentNode.removeChild(currentDiv);
-          }
-
-          var elemDiv = document.createElement('div');
-
-          var imageUrl = nameToImage[name];
-          elemDiv.style.backgroundImage = `url("${imageUrl}")`;
-          elemDiv.style.backgroundSize = 'cover';
-          elemDiv.style.position = 'fixed';
-          elemDiv.style.left = '50%';
-          elemDiv.style.top = '50%';
-          elemDiv.style.transform = 'translate(-50%, -50%)';
-          elemDiv.style.width = '300px';
-          elemDiv.style.height = '300px';
-
-          var elemP = document.createElement('p');
-          elemP.textContent = 'O número de vezes que o imagem do gatinho foi clicado foi __ vezes';
-          elemP.style.position = 'fixed';
-          elemP.style.top = '100%';
-
-          elem.addEventListener('click', function () {
-            elemDiv.parentNode.removeChild(elemDiv);
-          });
-
-          elemDiv.appendChild(elemP);
-          document.body.appendChild(elemDiv);
-
-          currentDiv = elemDiv;
-        };
-      })(name));
-
-      document.body.appendChild(elem);
-    };
-  </script>
+  <script src="/catclickerpremium.js"></script>
 
 </body>
 
