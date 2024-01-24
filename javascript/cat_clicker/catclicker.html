@@ -9,21 +9,7 @@
 </head>
 
 <body>
-  <div id="container">
-    <img id="imagecat" src="kittycat.jpg" alt="kittycat">
-    <p id="textoinfo">O número de vezes que o imagem do gatinho foi clicado foi
-      <input id="input" type="text" value=0 disabled>
-      vezes
-    </p>
-  </div>
+  <script src="catclicker.js"></script>
 </body>
-
-<script>
-  let contador = 0
-  const element = document.getElementById("imagecat");
-  element.addEventListener("click", function () {
-    document.getElementById("input").value = ++contador;
-  });
-</script>
 
 </html>

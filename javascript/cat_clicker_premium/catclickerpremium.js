@@ -51,6 +51,13 @@ for (var nameImg in nameToImage) {
         elemDiv.style.border = '10px solid #000000';
         elemDiv.style.cursor = 'pointer';
 
+        var elemH3 = document.createElement('h3');
+        elemH3.textContent = name;
+        elemH3.style.position = 'fixed';
+        elemH3.style.top = '-25%';
+        elemH3.style.left = '45%';
+        elemH3.style.transform = 'translate(-50%, -50%)';
+
         var elemP = document.createElement('p');
         elemP.innerHTML = `O número de vezes que a imagem do gatinho foi clicada foi <input type="text" value=0 disabled style="width:30px"> vezes`;
         elemP.style.position = 'fixed';
@@ -64,9 +71,10 @@ for (var nameImg in nameToImage) {
         });
 
         elem.addEventListener('click', function () {
-        elemDiv.parentNode.removeChild(elemDiv);
+            elemDiv.parentNode.removeChild(elemDiv);
         });
 
+        elemDiv.appendChild(elemH3);
         elemDiv.appendChild(elemP);
         document.body.appendChild(elemDiv);
 
