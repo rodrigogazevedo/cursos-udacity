@@ -1,46 +1,88 @@
-var Cat = function() {
-  var self = this;
-  self.clickCount = ko.observable(0);
-  self.name = ko.observable('Tabby');
-  self.childDevelopment = ko.pureComputed(function() {
-      var clickCount = self.clickCount();
-      
-      if (clickCount >= 0 && clickCount <= 10) {
-          return 'Newborn';
-      } else if (clickCount >= 11 && clickCount <= 20) {
-          return 'Infantil';
-      } else if (clickCount >= 21 && clickCount <= 30) {
-          return 'Toddler';
-      } else if(clickCount >= 31 && clickCount <= 40) {
-          return 'Preschooler ';
-      } else if (clickCount >= 41 && clickCount <= 50){
-          return 'School-aged child';
-      } else if (clickCount >= 51 && clickCount <= 60){
-          return 'Teen';
-      } else {
-          return 'Adult';
-      }
-  });
-  self.imgSrc = ko.observable('img/434164568_fea0ad4013_z.jpg');
-  // self.imgAttribution = ko.observable('https://www.flickr.com/photos/deerwooduk/779074040/in/photostream/');
+var initialCats = [
+    {
+        clickCount : 0,
+        name : 'Tabby',
+        imgSrc : 'img/434164568_fea0ad4013_z.jpg',
+        imgAttribution : 'https://www.flickr.com/photos/bigtallguy/434164568',
+        nicknames: ['Tabtab', 'T-Bone', 'Mr. T', 'Tabitha Tab Tabby Catty Cat']
+    },
+    {
+        clickCount : 0,
+        name : 'Tiger',
+        imgSrc : 'img/4154543904_6e2428c421_z.jpg',
+        imgAttribution : 'https://www.flickr.com/photos/xshamx/4154543904',
+        nicknames : ['Tigger']
+    },
+    {
+        clickCount : 0,
+        name : 'Scaredy',
+        imgSrc : 'img/22252709_010df3379e_z.jpg',
+        imgAttribution : 'https://www.flickr.com/photos/kpjas/4154543904',
+        nicknames : ['Casper']
+    },
+    {
+        clickCount : 0,
+        name : 'Shadow',
+        imgSrc : 'img/1413379559_412a540d29_z.jpg',
+        imgAttribution : 'https://www.flickr.com/photos/malfet/1413379559',
+        nicknames : ['Shooby']
+    },
+    {
+        clickCount : 0,
+        name : 'Sleepy',
+        imgSrc : 'img/9648464288_2516b35537_z.jpg',
+        imgAttribution : 'https://www.flickr.com/photos/onesharp/9648464288',
+        nicknames : ['Zzzzz']
+    }
+];
 
-  self.nicknames = ko.observable('Nicknames:')
+var Cat = function(data) {
+    var self = this;
+    self.clickCount = ko.observable(data.clickCount);
+    self.name = ko.observable(data.name);
+    self.childDevelopment = ko.pureComputed(function() {
+        var clickCount = self.clickCount();
+        
+        if (clickCount < 10) {
+            return 'Newborn';
+        } else if (clickCount < 50) {
+            return 'Infantil';
+        } else if (clickCount < 100) {
+            return 'Child';
+        } else if(clickCount < 200) {
+            return 'Teen';
+        } else if (clickCount < 500){
+            return 'Adult';
+        } else {
+            return 'Ninja';
+        }
+    });
+    self.imgSrc = ko.observable(data.imgSrc);
+    self.imgAttribution = ko.observable(data.imgAttribution);
+    
+    self.titleNickname = ko.observable('Nicknames:')
+    self.nicknames = ko.observableArray(data.nicknames || []);
+  }
+  
+  var ViewModel = function() {
+    var self = this;
 
-  self.items = ko.observableArray(['Tabtab', 'T-Bone', 'Mr. T', 'Tabitha Tab Tabby Catty Cat']);
-}
+    this.catList = ko.observableArray([]);
 
-var ViewModel = function() {
-  var self = this;
-  self.currentCat = ko.observable(new Cat());
+    initialCats.forEach(function(catItem) {
+        self.catList.push(new Cat(catItem));
+    });
 
-  self.incrementCounter = function () {
-      self.clickCount(self.clickCount() + 1);
+    this.currentCat = ko.observable(this.catList()[0]);
+
+    this.setCurrentCat = function(cat) {
+        self.currentCat(cat);
+    };
+
+    this.incrementCounter = () => {
+        self.currentCat().clickCount(self.currentCat().clickCount() + 1);
+    };    
   };
-
-  self.addNewItem = function() {
-      var newItem = 'Novo Item ' + (self.items().length + 1);
-      self.items.push(newItem);
-  };
-}
-
-ko.applyBindings(new ViewModel());
+  
+  ko.applyBindings(new ViewModel());
+  
