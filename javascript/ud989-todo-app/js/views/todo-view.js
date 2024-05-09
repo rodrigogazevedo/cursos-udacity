@@ -18,6 +18,7 @@ var app = app || {};
 		// The DOM events specific to an item.
 		events: {
 			'click .toggle': 'toggleCompleted',
+			'click .edit-btn': 'edit',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
@@ -31,6 +32,7 @@ var app = app || {};
 		// convenience.
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'edit', this.edit);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.listenTo(this.model, 'visible', this.toggleVisible);
 		},
