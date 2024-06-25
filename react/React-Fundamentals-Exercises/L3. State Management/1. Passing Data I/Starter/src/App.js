@@ -93,6 +93,22 @@ const movies = {
   },
 };
 
+const MovieList = ({ profiles, users, movies }) => {
+  return (
+    <ol>
+      {profiles.map(profile => {
+        const userName = users[profile.userID].name;
+        const favMovieName = movies[profile.favoriteMovieID].name;
+        return (
+          <li key={profile.id}>
+            <p>{`${userName}'s favorite movie is "${favMovieName}."`}</p>
+          </li>
+        );
+      })}
+    </ol>
+  );
+};
+
 const App = () => {
   return (
     <div>
@@ -101,6 +117,7 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <h2>Favorite Movies</h2>
+      <MovieList profiles={profiles} users={users} movies={movies} />
     </div>
   );
 };
