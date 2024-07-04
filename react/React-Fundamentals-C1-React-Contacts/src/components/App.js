@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import "../css/App.css";
 import ListContacts from "./ListContacts";
 
@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <div>
-      <ListContacts contacts={contacts} onDeleteContact={removeContact}/>
+      <ListContacts contacts={contacts} onDeleteContact={removeContact} />
     </div>
   );
 };
